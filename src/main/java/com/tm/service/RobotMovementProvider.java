@@ -3,16 +3,22 @@ package com.tm.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.tm.model.Request;
 import com.tm.model.Response;
 import com.tm.utils.Utils;
 
-public class RobotMovementProvider {
+public class RobotMovementProvider { 
+	
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass()); 
 	
 	private final Request request;
 	private int maxCol;
 	private int maxRow;
 	
+	//change dirt collection to Set if more than one dirt patch at single location requires only one robot visit
 	private List<Coords> dirt;
 	private int removedDirtCounter = 0;
 	
@@ -25,6 +31,7 @@ public class RobotMovementProvider {
 	}
 	
 	public Response calculateResponse() {
+		LOGGER.debug("New request will be processed: " + request);
 		Coords position = createCoords(request.getCoords());
 		
 		for (int i = 0; i < request.getInstructions().length(); i++) {
@@ -33,7 +40,7 @@ public class RobotMovementProvider {
 			if (direction != null) {
 				position = moveRobot(position, direction);
 			} else {
-				//logger
+				LOGGER.info("Not a valid robot instruction: " + instruction);
 			}
 		}
 		
@@ -70,6 +77,7 @@ public class RobotMovementProvider {
 	}
 	
 	private Coords moveRobot(Coords position, Cardinals direction) {
+		LOGGER.debug("Robot initial position: " + position + ". Robot move direction: " + direction);
 		int col = position.getCol();
 		int row = position.getRow();
 		
@@ -95,7 +103,7 @@ public class RobotMovementProvider {
 				}
 				break;
 			default:
-				//logger
+				LOGGER.info("Not a valid robot direction: " + direction);
 				break;
 		}
 		
@@ -103,6 +111,8 @@ public class RobotMovementProvider {
 			dirt.remove(position);
 			removedDirtCounter++;
 		}
+		
+		LOGGER.debug("Robot new position: " + position);
 		
 		return position;
 	}

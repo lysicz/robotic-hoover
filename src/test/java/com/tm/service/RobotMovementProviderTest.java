@@ -18,7 +18,7 @@ public class RobotMovementProviderTest {
 		Response response = robotMovementProvider.calculateResponse();
 		int[] expectedCoords = ServiceTestUtils.createCoords(1, 3);
 		
-		assertEquals(1, response.getPatches());
+		assertEquals(Integer.valueOf(1), response.getPatches());
 		assertEquals(expectedCoords[Utils.COL_INDEX], response.getCoords()[Utils.COL_INDEX]);
 		assertEquals(expectedCoords[Utils.ROW_INDEX], response.getCoords()[Utils.ROW_INDEX]);
 	}

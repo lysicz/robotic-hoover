@@ -44,5 +44,8 @@ public class Coords {
 		return true;
 	}
 	
+	public String toString() {
+		return "col: " + col + ", row: " + row;
+	}
 	
 }

@@ -3,7 +3,8 @@ package com.tm.model;
 public class Response {
 	
 	private int[] coords;
-	private int patches;
+	private Integer patches;
+	private String error;
 	
 	public int[] getCoords() {
 		return coords;
@@ -11,10 +12,16 @@ public class Response {
 	public void setCoords(int[] coords) {
 		this.coords = coords;
 	}
-	public int getPatches() {
+	public Integer getPatches() {
 		return patches;
 	}
-	public void setPatches(int patches) {
+	public void setPatches(Integer patches) {
 		this.patches = patches;
+	}
+	public String getError() {
+		return error;
+	}
+	public void setError(String error) {
+		this.error = error;
 	}
 }

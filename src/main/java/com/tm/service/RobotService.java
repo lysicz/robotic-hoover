@@ -1,7 +1,5 @@
 package com.tm.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,13 +27,4 @@ public class RobotService {
 		
 		return response;
 	}
-	
-	public List<Request> getAllRequests() {
-		return requestRepository.findAll();
-	}
-	
-	public List<Response> getAllResponses() {
-		return responseRepository.findAll();
-	}
-	
 }

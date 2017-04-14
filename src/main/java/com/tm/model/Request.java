@@ -2,11 +2,17 @@ package com.tm.model;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 public class Request {
 	
+	@NotNull
 	private int[] roomSize;
+	@NotNull
 	private int[] coords;
+	@NotNull
 	private List<int[]> patches;
+	@NotNull
 	private String instructions;
 	
 	public int[] getRoomSize() {
