@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tm.model.Request;
 import com.tm.model.Response;
 import com.tm.service.RobotService;
+import com.tm.utils.Error;
 import com.tm.utils.Utils;
 
 @RestController
@@ -30,9 +31,9 @@ public class RobotController {
 		if (errors.hasErrors()) {
 			LOGGER.warn("Errors processing request: ");
 			errors.getAllErrors().stream().forEach(e -> {
-				LOGGER.warn(e.getCode());
+				LOGGER.warn(e.getDefaultMessage());
 			});
-			return Utils.createErrorResponse();
+			return Utils.createErrorResponse(Error.NOT_A_VALID_REQUEST);
 		}
 		
 		return robotService.handleRequest(request);

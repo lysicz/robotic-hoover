@@ -8,15 +8,46 @@ import com.tm.utils.Utils;
 
 public final class ServiceTestUtils {
 	
-	public static Request buildRequest() {
+	private static final String VALID_INSTRUCTION = "NNESEESWNWW";
+	private static final String NOT_VALID_INSTRUCTION = "NNESEXSWNWW";
+	
+	public static Request buildRequest(RequestType requestType) {
 		Request request = new Request();
 		
-		request.setInstructions("NNESEESWNWW");
+		String instructions = null;
+		int[] coords = null;
+		int[] roomSize = null;
 		
-		int[] coords = createCoords(1, 2);
+		switch (requestType) {
+			case VALID:
+				instructions = VALID_INSTRUCTION;
+				coords = createCoords(1, 2);
+				roomSize = createCoords(5, 5);
+				break;
+			case NOT_A_VALID_STARTING_POSITION:
+				instructions = VALID_INSTRUCTION;
+				coords = createCoords(-1, 2);
+				roomSize = createCoords(5, 5);
+				break;
+			case NOT_A_VALID_INSTRUCTION:
+				instructions = NOT_VALID_INSTRUCTION;
+				coords = createCoords(1, 2);
+				roomSize = createCoords(5, 5);
+				break;
+			case NOT_A_VALID_ROOM_SIZE:
+				instructions = VALID_INSTRUCTION;
+				coords = createCoords(1, 2);
+				roomSize = createCoords(-5, 5);
+				break;
+			default:
+				instructions = VALID_INSTRUCTION;
+				coords = createCoords(1, 2);
+				roomSize = createCoords(5, 5);
+				break;
+		}
+		
+		request.setInstructions(instructions);
 		request.setCoords(coords);
-		
-		int[] roomSize = createCoords(5, 5);
 		request.setRoomSize(roomSize);
 		
 		List<int[]> pathes = new ArrayList<>();

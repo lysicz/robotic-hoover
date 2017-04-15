@@ -32,7 +32,7 @@ public class RobotServiceTest {
 
 	@Test
 	public void testHandleRequest() {
-		Request request = ServiceTestUtils.buildRequest();
+		Request request = ServiceTestUtils.buildRequest(RequestType.VALID);
 
 		Response response = robotService.handleRequest(request);
 		

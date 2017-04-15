@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.tm.model.Request;
 import com.tm.model.Response;
+import com.tm.utils.Error;
 import com.tm.utils.Utils;
 
 public class RobotMovementProvider { 
@@ -34,6 +35,14 @@ public class RobotMovementProvider {
 		LOGGER.debug("New request will be processed: " + request);
 		Coords position = createCoords(request.getCoords());
 		
+		if (!validateStartingPosition(position)) {
+			return Utils.createErrorResponse(Error.NOT_A_VALID_STARTING_POSITION);
+		}
+		
+		if (!validateRoomSize()) {
+			return Utils.createErrorResponse(Error.NOT_A_VALID_ROOM_SIZE);
+		}
+		
 		for (int i = 0; i < request.getInstructions().length(); i++) {
 			String instruction = String.valueOf(request.getInstructions().charAt(i));
 			Cardinals direction = convertToCardinal(instruction);
@@ -45,7 +54,7 @@ public class RobotMovementProvider {
 		}
 		
 		Response response = new Response();
-		int[] newPosition = new int[2];
+		int[] newPosition = new int[Utils.STD_ARRAY_SIZE];
 		newPosition[Utils.COL_INDEX] = position.getCol();
 		newPosition[Utils.ROW_INDEX] = position.getRow();
 		response.setCoords(newPosition);
@@ -115,5 +124,13 @@ public class RobotMovementProvider {
 		LOGGER.debug("Robot new position: " + position);
 		
 		return position;
+	}
+	
+	private boolean validateStartingPosition(Coords position) {
+		return (position.getCol() > 0 && position.getRow() > 0);
+	}
+	
+	private boolean validateRoomSize() {
+		return (maxCol > 0 && maxRow > 0);
 	}
 }

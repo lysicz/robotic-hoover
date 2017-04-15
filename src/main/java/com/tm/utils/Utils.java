@@ -8,10 +8,12 @@ public final class Utils {
 	
 	public static final int MIN_ROW_COL = 0;
 	
-	public static Response createErrorResponse() {
+	public static final int STD_ARRAY_SIZE = 2;
+	
+	public static Response createErrorResponse(Error error) {
 		Response response = new Response();
 		response.setPatches(null);
-		response.setError("Not a valid request");
+		response.setError(error.getValue());
 		
 		return response;
 	}
