@@ -16,3 +16,5 @@ I was't able to test my solution on Mac and Linux.
 
 Integration tests should be added on the REST controller level. Spring supports REST controller integration test but I wasn't able to create them. It will require some additional investigation and research on my side. 
 I don't have much experiance with REST services so, probably, the request errors handling can be done different way. I need more experience to find my way or someone who will show me the best practice.
+
+If MongoDB is not available application throws an exception on the startup (I was't able to find how to get rid of this exception or at least handle it). Application should response with valid data but request processing will take about a minute (default MongoDB connection timeout is 30 seconds).
