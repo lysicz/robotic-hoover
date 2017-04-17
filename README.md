@@ -1,4 +1,4 @@
-Application uses Spring Boot and Spring Data solutions and MongoDB database.
+Application uses Spring Boot and Spring Data solutions and MongoDB database. I used Spring Tool Suite as a dev environment.
 
 1. How to start the application.
 
@@ -9,6 +9,8 @@ It's possible to create a war file but requires changes in the application pom f
 
 By default application runs on embeded Tomcat application server. The default port is 8080. By default application tries to connect to the MongoDB database which should be installed and started on the localhost and should accept connections using standard 27017 port.
 It's possible to change application port and database location using application.properties file. The example of the application.properties file can be found in the example directory. The application.properties file should be in the /config directory inside application directory.
+
+There is a compiled jar + config file in the GitHub repository (example folder). I know it shouldn't be there. You can use it in case of any compiling problems.
 
 3. Possible future improvements
 
