@@ -12,7 +12,11 @@ It's possible to change application port and database location using application
 
 There is a compiled jar + config file in the GitHub repository (example folder). I know it shouldn't be there. You can use it in case of any compiling problems.
 
-3. Possible future improvements
+3. Assumptions
+
+The single robot visit at specific location removes only single dirt patch. So if e.g there are 2 patches of dirt in a single location robot will have to visit this location 2 times to remove all the dirt.
+
+4. Possible future improvements
 
 I was't able to test my solution on Mac and Linux.
 
